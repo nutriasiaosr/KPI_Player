@@ -5,17 +5,8 @@
 <title>KPI Player</title>
 
 <style>
-  body {
-    margin: 0;
-    background: black;
-    overflow: hidden;
-  }
-
-  iframe {
-    width: 100vw;
-    height: 100vh;
-    border: none;
-  }
+  body { margin:0; background:black; overflow:hidden; }
+  iframe { width:100vw; height:100vh; border:none; }
 </style>
 </head>
 
@@ -32,20 +23,24 @@ const videos = [
 let i = 0;
 const player = document.getElementById("player");
 
-// ⏱️ SET THIS BASED ON YOUR VIDEO LENGTH
-const duration = 60000; // 60 seconds (change this!)
+// ⏱️ SET YOUR VIDEO DURATION HERE
+const duration = 60000; // 1 minute
 
 function play(){
-  player.src = videos[i];
+  // 🔥 FORCE RELOAD by resetting src
+  player.src = "";
+  setTimeout(() => {
+    player.src = videos[i] + "&t=" + new Date().getTime();
+  }, 300);
 }
 
-// loop videos
+// 🔁 LOOP
 setInterval(() => {
   i = (i + 1) % videos.length;
   play();
 }, duration);
 
-// start
+// ▶️ START
 play();
 </script>
 

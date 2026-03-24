@@ -5,43 +5,75 @@
 <title>KPI Player</title>
 
 <style>
-  body { margin:0; background:black; overflow:hidden; }
-  iframe { width:100vw; height:100vh; border:none; }
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+  }
+
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    background: black;
+  }
 </style>
 </head>
 
 <body>
 
-<iframe id="player"></iframe>
+<video id="player"
+       autoplay
+       muted
+       playsinline
+       webkit-playsinline
+       preload="auto"
+       controls>
+</video>
 
 <script>
 const videos = [
-  "https://drive.google.com/file/d/1u6g1S_onZc0Cca-xM5ad7S0DDes2eB03/preview",
-  "https://drive.google.com/file/d/1LmhIsSFAx4Cbq_XGdeea3c2ztb-_BpiY/preview"
+  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
+  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
 ];
 
 let i = 0;
 const player = document.getElementById("player");
 
-// ⏱️ SET YOUR VIDEO DURATION HERE
-const duration = 60000; // 1 minute
+// 🔧 Play function with retry (for Smart TV autoplay issues)
+function play() {
+  player.src = videos[i];
+  player.load();
 
-function play(){
-  // 🔥 FORCE RELOAD by resetting src
-  player.src = "";
-  setTimeout(() => {
-    player.src = videos[i] + "&t=" + new Date().getTime();
-  }, 300);
+  let playPromise = player.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      console.log("Autoplay blocked, retrying...");
+      setTimeout(() => {
+        player.muted = true;
+        player.play();
+      }, 3000);
+    });
+  }
 }
 
-// 🔁 LOOP
-setInterval(() => {
+// 🔁 When video ends → next
+player.onended = () => {
   i = (i + 1) % videos.length;
   play();
-}, duration);
+};
 
-// ▶️ START
+// ⚠️ If error → skip to next
+player.onerror = () => {
+  console.log("Error loading video, skipping...");
+  i = (i + 1) % videos.length;
+  play();
+};
+
+// 🚀 Start playback
 play();
+
 </script>
 
 </body>

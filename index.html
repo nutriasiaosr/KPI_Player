@@ -5,42 +5,47 @@
 <title>KPI Player</title>
 
 <style>
-  body { margin:0; background:black; overflow:hidden; }
-  video { width:100vw; height:100vh; object-fit:cover; }
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+  }
+
+  iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
 </style>
 </head>
 
 <body>
 
-<video id="player" autoplay muted playsinline></video>
+<iframe id="player"></iframe>
 
 <script>
 const videos = [
-  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
-
-"https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
-  
+  "https://onedrive.live.com/embed?resid=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
+  "https://onedrive.live.com/embed?resid=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
 ];
 
 let i = 0;
 const player = document.getElementById("player");
 
-function play(){
+// 👉 Adjust based on your video length
+const duration = 60000; // 60 seconds (change this)
+
+function play() {
   player.src = videos[i];
-  player.load();
-  player.play().catch(()=>setTimeout(()=>player.play(),2000));
 }
 
-player.onended = ()=>{
-  i = (i+1) % videos.length;
+// loop videos
+setInterval(() => {
+  i = (i + 1) % videos.length;
   play();
-};
+}, duration);
 
-player.onerror = ()=>{
-  i = (i+1) % videos.length;
-  play();
-};
-
+// start
 play();
 </script>
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>KPI Player</title>
+
+<style>
+  body { margin:0; background:black; overflow:hidden; }
+  video { width:100vw; height:100vh; object-fit:cover; }
+</style>
+</head>
+
+<body>
+
+<video id="player" autoplay muted playsinline></video>
+
+<script>
+const videos = [
+  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
+
+"https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
+  
+];
+
+let i = 0;
+const player = document.getElementById("player");
+
+function play(){
+  player.src = videos[i];
+  player.load();
+  player.play().catch(()=>setTimeout(()=>player.play(),2000));
+}
+
+player.onended = ()=>{
+  i = (i+1) % videos.length;
+  play();
+};
+
+player.onerror = ()=>{
+  i = (i+1) % videos.length;
+  play();
+};
+
+play();
+</script>
+
+</body>
+</html>

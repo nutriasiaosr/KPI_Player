@@ -5,8 +5,17 @@
 <title>KPI Player</title>
 
 <style>
-  body { margin:0; background:black; overflow:hidden; }
-  iframe { width:100vw; height:100vh; border:none; }
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+  }
+
+  iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
 </style>
 </head>
 
@@ -16,25 +25,27 @@
 
 <script>
 const videos = [
-  "https://drive.google.com/file/d/1t3kGIM_tmtd-MKRccBiTX35TPOPCtOHK/preview",
-  "https://drive.google.com/file/d/1zSc_6ib6Y6hbpWB1iKteRmoPLeM6NWEX/preview"
+  "https://onedrive.live.com/embed?resid=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
+  "https://onedrive.live.com/embed?resid=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
 ];
 
 let i = 0;
 const player = document.getElementById("player");
 
-// adjust time depending on your video length
-const duration = 60000; // 1 minute
+// 👉 Adjust based on your video length
+const duration = 60000; // 60 seconds (change this)
 
-function play(){
+function play() {
   player.src = videos[i];
 }
 
-setInterval(()=>{
-  i = (i+1) % videos.length;
+// loop videos
+setInterval(() => {
+  i = (i + 1) % videos.length;
   play();
 }, duration);
 
+// start
 play();
 </script>
 

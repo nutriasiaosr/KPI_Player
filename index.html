@@ -6,45 +6,36 @@
 
 <style>
   body { margin:0; background:black; overflow:hidden; }
-  video { width:100vw; height:100vh; object-fit:cover; }
+  iframe { width:100vw; height:100vh; border:none; }
 </style>
 </head>
 
 <body>
 
-<video id="player" autoplay muted playsinline></video>
+<iframe id="player"></iframe>
 
 <script>
 const videos = [
-  "https://drive.google.com/uc?export=download&id=1t3kGIM_tmtd-MKRccBiTX35TPOPCtOHK",
-  "https://drive.google.com/uc?export=download&id=1zSc_6ib6Y6hbpWB1iKteRmoPLeM6NWEX"
+  "https://drive.google.com/file/d/1t3kGIM_tmtd-MKRccBiTX35TPOPCtOHK/preview",
+  "https://drive.google.com/file/d/1zSc_6ib6Y6hbpWB1iKteRmoPLeM6NWEX/preview"
 ];
 
 let i = 0;
 const player = document.getElementById("player");
 
+// adjust time depending on your video length
+const duration = 60000; // 1 minute
+
 function play(){
   player.src = videos[i];
-  player.load();
-  player.play().catch(()=>setTimeout(()=>player.play(),2000));
 }
 
-player.onended = ()=>{
+setInterval(()=>{
   i = (i+1) % videos.length;
   play();
-};
-
-player.onerror = ()=>{
-  i = (i+1) % videos.length;
-  play();
-};
+}, duration);
 
 play();
-
-// refresh every 4 hours
-setInterval(()=>{
-  location.reload();
-},14400000);
 </script>
 
 </body>

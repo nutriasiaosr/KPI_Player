@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KPI Player</title>
+<title>KPI Display</title>
 
 <style>
   body {
@@ -10,70 +10,26 @@
     background: black;
     overflow: hidden;
   }
-
-  video {
+  iframe {
     width: 100vw;
     height: 100vh;
-    object-fit: cover;
-    background: black;
+    border: none;
   }
 </style>
 </head>
 
 <body>
 
-<video id="player"
-       autoplay
-       muted
-       playsinline
-       webkit-playsinline
-       preload="auto"
-       controls>
-</video>
+<iframe 
+src="https://www.youtube.com/embed?playlist=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&loop=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0"
+allow="autoplay; fullscreen">
+</iframe>
 
 <script>
-const videos = [
-  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQC89kn20aoyR4vNZq72ZCRWAQDo9wFGqOF_bGf5pEWicM0",
-  "https://nutriasiaph-my.sharepoint.com/personal/ecsegundo_nutriasia_com/_layouts/15/download.aspx?share=IQBdMquDX3ZtTIEl02tq3_CBAd_AESPnXjWpr8JZnFgUjUY"
-];
-
-let i = 0;
-const player = document.getElementById("player");
-
-// 🔧 Play function with retry (for Smart TV autoplay issues)
-function play() {
-  player.src = videos[i];
-  player.load();
-
-  let playPromise = player.play();
-
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      console.log("Autoplay blocked, retrying...");
-      setTimeout(() => {
-        player.muted = true;
-        player.play();
-      }, 3000);
-    });
-  }
-}
-
-// 🔁 When video ends → next
-player.onended = () => {
-  i = (i + 1) % videos.length;
-  play();
-};
-
-// ⚠️ If error → skip to next
-player.onerror = () => {
-  console.log("Error loading video, skipping...");
-  i = (i + 1) % videos.length;
-  play();
-};
-
-// 🚀 Start playback
-play();
-
+// Auto refresh every 10 minutes
+setInterval(() => {
+  location.reload();
+}, 600000);
 </script>
 
 </body>

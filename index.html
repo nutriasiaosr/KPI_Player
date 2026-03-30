@@ -25,24 +25,17 @@
 <body>
 
 <iframe 
-src="https://www.youtube.com/embed/videoseries?list=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=0&loop=1&controls=0&rel=0&modestbranding=1&origin=https://nutriasiaosr.github.io"
+src="https://www.youtube.com/embed/videoseries?list=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=1&loop=1&controls=0&rel=0&modestbranding=1&origin=https://nutriasiaosr.github.io"
 allow="autoplay; fullscreen">
 </iframe>
 
 <script>
-// Try auto fullscreen
+// Optional: try auto fullscreen (may require 1 click depending on browser)
 function goFullscreen() {
   let el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen();
 }
-
-// Run after load
 setTimeout(goFullscreen, 2000);
-
-// Auto refresh every 10 minutes
-setInterval(() => {
-  location.reload();
-}, 600000);
 </script>
 
 </body>

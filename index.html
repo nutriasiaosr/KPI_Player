@@ -12,7 +12,9 @@
   }
 
   iframe {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     border: none;
@@ -28,7 +30,16 @@ allow="autoplay; fullscreen">
 </iframe>
 
 <script>
-// 🔄 Auto refresh every 10 minutes (ensures updated playlist)
+// Try auto fullscreen
+function goFullscreen() {
+  let el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen();
+}
+
+// Run after load
+setTimeout(goFullscreen, 2000);
+
+// Auto refresh every 10 minutes
 setInterval(() => {
   location.reload();
 }, 600000);

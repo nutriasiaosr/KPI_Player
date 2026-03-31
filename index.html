@@ -24,19 +24,13 @@
 
 <body>
 
-<iframe id="player"
-src="https://www.youtube.com/embed/videoseries?list=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=1&loop=1&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1&origin=https://nutriasiaosr.github.io"
+<iframe 
+src="https://www.youtube.com/embed/videoseries?list=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=1&loop=1&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=0&disablekb=1&origin=https://nutriasiaosr.github.io"
 allow="autoplay; fullscreen">
 </iframe>
 
 <script>
-// 🔄 Retry autoplay every 30 seconds if TV blocks it
-setInterval(() => {
-  let iframe = document.getElementById("player");
-  iframe.src = iframe.src;
-}, 30000);
-
-// 🔄 Optional: try fullscreen (may require 1 click)
+// Optional: try fullscreen (may need 1 click on some TVs)
 function goFullscreen() {
   let el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen();

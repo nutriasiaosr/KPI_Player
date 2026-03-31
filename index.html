@@ -24,10 +24,17 @@
 
 <body>
 
-<iframe 
-src="https://www.youtube.com/embed/7vY5H4kq1kQ?playlist=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=1&loop=1&controls=0&rel=0&modestbranding=1&playsinline=1&origin=https://nutriasiaosr.github.io"
-allow="autoplay; fullscreen">
+<iframe id="player"
+src="https://www.youtube.com/embed/videoseries?list=PLzfMwpUS2RQEc7xqSujg65dFh0S3luYHk&autoplay=1&mute=1&loop=1&controls=0&rel=0&modestbranding=1&playsinline=1"
+allow="autoplay">
 </iframe>
+
+<script>
+// 🔁 Fallback: reload ONLY if stuck (every 5 minutes)
+setInterval(() => {
+  location.reload();
+}, 300000);
+</script>
 
 </body>
 </html>
